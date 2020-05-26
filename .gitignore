@@ -1,0 +1,6 @@
+config.h.orig
+drw.o
+dwm
+dwm.o
+patches/
+util.o
