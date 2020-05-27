@@ -79,6 +79,9 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
 static const char *filemanagercmd[]  = { "st", "-e", "ranger" };
 /* static const char *dwmstartupscriptscmd[]  = { "dwmstartupscripts", NULL }; */
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "1", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "1", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "1", "toggle",  NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -141,6 +144,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
     { 0, XF86XK_MonBrightnessUp,    spawn,     SHCMD("xbacklight -inc 5") },
     { 0, XF86XK_MonBrightnessDown,  spawn,     SHCMD("xbacklight -dec 5") },
+    { 0, XF86XK_AudioLowerVolume,   spawn,     {.v = downvol } },
+	{ 0, XF86XK_AudioMute,          spawn,     {.v = mutevol } },
+	{ 0, XF86XK_AudioRaiseVolume,   spawn,     {.v = upvol   } },
 };
 
 /* button definitions */
