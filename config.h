@@ -15,7 +15,7 @@ static const int horizpadbar        = 0;        /* horizontal padding for status
 static const int vertpadbar         = 12;        /* vertical padding for statusbar */
 static const int vertpad            = 10;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
-static const char *fonts[]          = { "Jetbrains Mono:size=12", "Joypixels:size=12" };
+static const char *fonts[]          = { "Jetbrains Mono:size=12", "Font Awesome:size=12", "Joypixels:size=12" };
 static const char dmenufont[]       = "Jetbrains Mono:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -30,7 +30,8 @@ static const char *colors[][3]      = {
 
 /* tagging */
 /* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
-static const char *tags[] = { "TE", "BR", "IN", "CO", "SE", "FI", "VI", "MU", "MI" };
+/* static const char *tags[] = { "TE", "BR", "IN", "CO", "SE", "FI", "VI", "MU", "MI" }; */
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
