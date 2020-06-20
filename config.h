@@ -29,8 +29,6 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-/* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
-/* static const char *tags[] = { "TE", "BR", "IN", "CO", "SE", "FI", "VI", "MU", "MI" }; */
 static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
@@ -79,7 +77,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
 static const char *filemanagercmd[]  = { "st", "-e", "ranger" };
-/* static const char *dwmstartupscriptscmd[]  = { "dwmstartupscripts", NULL }; */
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
@@ -90,7 +87,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
     { MODKEY,                       XK_f,      spawn,          {.v = filemanagercmd } },
-    /* { MODKEY|Mod1Mask,              XK_d,      spawn,          {.v = dwmstartupscriptscmd } }, */
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
