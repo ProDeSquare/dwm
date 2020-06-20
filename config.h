@@ -136,8 +136,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
-    { 0, XF86XK_MonBrightnessUp,    spawn,     SHCMD("xbacklight -inc 5") },
-    { 0, XF86XK_MonBrightnessDown,  spawn,     SHCMD("xbacklight -dec 5") },
+    { 0, XF86XK_MonBrightnessUp,    spawn,     SHCMD("xbacklight -inc 5 && pkill -RTMIN+11 dwmblocks") },
+    { 0, XF86XK_MonBrightnessDown,  spawn,     SHCMD("xbacklight -dec 5 && pkill -RTMIN+11 dwmblocks") },
     { 0, XF86XK_AudioLowerVolume,   spawn,     SHCMD("pactl set-sink-volume 0 -5% && pkill -RTMIN+10 dwmblocks") },
     { 0, XF86XK_AudioRaiseVolume,   spawn,     SHCMD("pactl set-sink-volume 0 +5% && pkill -RTMIN+10 dwmblocks") },
     { 0, XF86XK_AudioMute,          spawn,     SHCMD("pactl set-sink-mute 0 toggle && pkill -RTMIN+10 dwmblocks") },
