@@ -9,7 +9,7 @@ dwm is a dynamic window manager for X. Read more about dwm on [suckless' website
 + Inner & outer padding for statusbar
 + Gaps around windows
 + Multiple layout options
-    + Stack
+    + Tabbed
     + Monocle
     + Fibonacci
     + Gridmode
