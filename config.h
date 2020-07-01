@@ -30,7 +30,8 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+/* static const char *tags[] = { "", "", "", "", "", "", "", "", "" }; */
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -59,6 +60,8 @@ static const Layout layouts[] = {
 	{ "HHH",      grid },
  	{ "[@]",      spiral },
  	{ "[\\]",      dwindle },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -121,6 +124,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[6]} },
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[7]} },
+    { MODKEY,                       XK_s,      setlayout,      {.v = &layouts[8]} },
+    { MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[9]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -145,6 +150,7 @@ static Key keys[] = {
     { 0, XF86XK_AudioRaiseVolume,   spawn,     SHCMD("pactl set-sink-volume 0 +5% && pkill -RTMIN+10 dwmblocks") },
     { 0, XF86XK_AudioMute,          spawn,     SHCMD("pactl set-sink-mute 0 toggle && pkill -RTMIN+10 dwmblocks") },
     { 0, XK_Print,                  spawn,     SHCMD("scrot -e 'mv $f ~/Pictures/screenshots'") },
+    { 0, ShiftMask|XK_Print,        spawn,     SHCMD("scrot -s -e 'mv $f ~/Pictures/screenshots'") },
 };
 
 /* button definitions */
