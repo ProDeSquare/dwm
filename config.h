@@ -13,8 +13,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 10;        /* vertical padding for statusbar */
-static const int vertpad            = 4;       /* vertical padding of bar */
-static const int sidepad            = 4;       /* horizontal padding of bar */
+static const int vertpad            = 6;       /* vertical padding of bar */
+static const int sidepad            = 6;       /* horizontal padding of bar */
 static const char *fonts[]          = { "Product Sans:size=12", "Amiri:size=12", "Font Awesome:size=12", "Joypixels:size=12" };
 static const char dmenufont[]       = "SF UI Display:size=12";
 static const char col_gray1[]       = "#222222";
@@ -52,16 +52,17 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 /* #include "fibonacci.c" */
 static const Layout layouts[] = {
 	/* symbol     arrange function */
- 	{ "[@]",      spiral },
-	{ "[]=",      tile },
-	{ "><>",      NULL },
-	{ "[M]",      monocle },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
-	{ "HHH",      grid },
- 	{ "[\\]",      dwindle },
-	{ "TTT",      bstack },
-	{ "===",      bstackhoriz },
+ 	{ "[@]",    spiral },
+	{ "[]=",    tile },
+	{ "><>",    NULL },
+	{ "[M]",    monocle },
+	{ "|M|",    centeredmaster },
+	{ ">M>",    centeredfloatingmaster },
+	{ "HHH",    grid },
+ 	{ "[\\]",   dwindle },
+	{ "TTT",    bstack },
+	{ "===",    bstackhoriz },
+    { "H[]",    deck },
 };
 
 /* key definitions */
@@ -126,6 +127,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[7]} },
     { MODKEY,                       XK_s,      setlayout,      {.v = &layouts[8]} },
     { MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[9]} },
+    { MODKEY,                       XK_a,      setlayout,      {.v = &layouts[10]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },

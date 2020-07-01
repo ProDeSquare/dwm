@@ -13,7 +13,7 @@ static void togglegaps(const Arg *arg);
 static void bstack(Monitor *m);
 static void centeredmaster(Monitor *m);
 static void centeredfloatingmaster(Monitor *m);
-/* static void deck(Monitor *m); */
+static void deck(Monitor *m);
 static void dwindle(Monitor *m);
 static void fibonacci(Monitor *m, int s);
 static void spiral(Monitor *m);
@@ -376,47 +376,47 @@ centeredfloatingmaster(Monitor *m)
  * https://dwm.suckless.org/patches/deck/
  */
 
-/* static void */
-/* deck(Monitor *m) */
-/* { */
-/* 	unsigned int i, n; */
-/* 	int mx = 0, my = 0, mh = 0, mw = 0; */
-/* 	int sx = 0, sy = 0, sh = 0, sw = 0; */
-/* 	float mfacts, sfacts; */
-/* 	int mrest, srest; */
-/* 	Client *c; */
+static void
+deck(Monitor *m)
+{
+	unsigned int i, n;
+	int mx = 0, my = 0, mh = 0, mw = 0;
+	int sx = 0, sy = 0, sh = 0, sw = 0;
+	float mfacts, sfacts;
+	int mrest, srest;
+	Client *c;
 
-/* 	int oh, ov, ih, iv; */
-/* 	getgaps(m, &oh, &ov, &ih, &iv, &n); */
+	int oh, ov, ih, iv;
+	getgaps(m, &oh, &ov, &ih, &iv, &n);
 
-/* 	if (n == 0) */
-/* 		return; */
+	if (n == 0)
+		return;
 
-/* 	sx = mx = m->wx + ov; */
-/* 	sy = my = m->wy + oh; */
-/* 	sh = mh = m->wh - 2*oh - ih * (MIN(n, m->nmaster) - 1); */
-/* 	sw = mw = m->ww - 2*ov; */
+	sx = mx = m->wx + ov;
+	sy = my = m->wy + oh;
+	sh = mh = m->wh - 2*oh - ih * (MIN(n, m->nmaster) - 1);
+	sw = mw = m->ww - 2*ov;
 
-/* 	if (m->nmaster && n > m->nmaster) { */
-/* 		sw = (mw - iv) * (1 - m->mfact); */
-/* 		mw = (mw - iv) * m->mfact; */
-/* 		sx = mx + mw + iv; */
-/* 		sh = m->wh - 2*oh; */
-/* 	} */
+	if (m->nmaster && n > m->nmaster) {
+		sw = (mw - iv) * (1 - m->mfact);
+		mw = (mw - iv) * m->mfact;
+		sx = mx + mw + iv;
+		sh = m->wh - 2*oh;
+	}
 
-/* 	getfacts(m, mh, sh, &mfacts, &sfacts, &mrest, &srest); */
+	getfacts(m, mh, sh, &mfacts, &sfacts, &mrest, &srest);
 
-/* 	if (n - m->nmaster > 0) /1* override layout symbol *1/ */
-/* 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "D %d", n - m->nmaster); */
+	if (n - m->nmaster > 0) /* override layout symbol */
+		snprintf(m->ltsymbol, sizeof m->ltsymbol, "D %d", n - m->nmaster);
 
-/* 	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) */
-/* 		if (i < m->nmaster) { */
-/* 			resize(c, mx, my, mw - (2*c->bw), (mh / mfacts) + (i < mrest ? 1 : 0) - (2*c->bw), 0); */
-/* 			my += HEIGHT(c) + ih; */
-/* 		} else { */
-/* 			resize(c, sx, sy, sw - (2*c->bw), sh - (2*c->bw), 0); */
-/* 		} */
-/* } */
+	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+		if (i < m->nmaster) {
+			resize(c, mx, my, mw - (2*c->bw), (mh / mfacts) + (i < mrest ? 1 : 0) - (2*c->bw), 0);
+			my += HEIGHT(c) + ih;
+		} else {
+			resize(c, sx, sy, sw - (2*c->bw), sh - (2*c->bw), 0);
+		}
+}
 
 /*
  * Fibonacci layout + gaps
@@ -543,29 +543,59 @@ tile(Monitor *m)
 }
 
 void
-grid(Monitor *m) {
-	unsigned int i, n, cx, cy, cw, ch, aw, ah, cols, rows;
+grid(Monitor *m)
+{
+	unsigned int i, n;
+	int cx, cy, cw, ch, cc, cr, chrest, cwrest, cols, rows;
+	int oh, ov, ih, iv;
 	Client *c;
 
-	for(n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next))
-		n++;
+	getgaps(m, &oh, &ov, &ih, &iv, &n);
 
 	/* grid dimensions */
-	for(rows = 0; rows <= n/2; rows++)
-		if(rows*rows >= n)
+	for (rows = 0; rows <= n/2; rows++)
+		if (rows*rows >= n)
 			break;
 	cols = (rows && (rows - 1) * rows >= n) ? rows - 1 : rows;
 
 	/* window geoms (cell height/width) */
-	ch = m->wh / (rows ? rows : 1);
-	cw = m->ww / (cols ? cols : 1);
-	for(i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next)) {
-		cx = m->wx + (i / rows) * cw;
-		cy = m->wy + (i % rows) * ch;
-		/* adjust height/width of last row/column's windows */
-		ah = ((i + 1) % rows == 0) ? m->wh - ch * rows : 0;
-		aw = (i >= rows * (cols - 1)) ? m->ww - cw * cols : 0;
-		resize(c, cx, cy, cw - 2 * c->bw + aw, ch - 2 * c->bw + ah, False);
-		i++;
+	ch = (m->wh - 2*oh - ih * (rows - 1)) / (rows ? rows : 1);
+	cw = (m->ww - 2*ov - iv * (cols - 1)) / (cols ? cols : 1);
+	chrest = (m->wh - 2*oh - ih * (rows - 1)) - ch * rows;
+	cwrest = (m->ww - 2*ov - iv * (cols - 1)) - cw * cols;
+	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) {
+		cc = i / rows;
+		cr = i % rows;
+		cx = m->wx + ov + cc * (cw + iv) + MIN(cc, cwrest);
+		cy = m->wy + oh + cr * (ch + ih) + MIN(cr, chrest);
+		resize(c, cx, cy, cw + (cc < cwrest ? 1 : 0) - 2*c->bw, ch + (cr < chrest ? 1 : 0) - 2*c->bw, False);
 	}
 }
+
+/* void */
+/* grid(Monitor *m) { */
+/* 	unsigned int i, n, cx, cy, cw, ch, aw, ah, cols, rows; */
+/* 	Client *c; */
+
+/* 	for(n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next)) */
+/* 		n++; */
+
+/* 	/1* grid dimensions *1/ */
+/* 	for(rows = 0; rows <= n/2; rows++) */
+/* 		if(rows*rows >= n) */
+/* 			break; */
+/* 	cols = (rows && (rows - 1) * rows >= n) ? rows - 1 : rows; */
+
+/* 	/1* window geoms (cell height/width) *1/ */
+/* 	ch = m->wh / (rows ? rows : 1); */
+/* 	cw = m->ww / (cols ? cols : 1); */
+/* 	for(i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next)) { */
+/* 		cx = m->wx + (i / rows) * cw; */
+/* 		cy = m->wy + (i % rows) * ch; */
+/* 		/1* adjust height/width of last row/column's windows *1/ */
+/* 		ah = ((i + 1) % rows == 0) ? m->wh - ch * rows : 0; */
+/* 		aw = (i >= rows * (cols - 1)) ? m->ww - cw * cols : 0; */
+/* 		resize(c, cx, cy, cw - 2 * c->bw + aw, ch - 2 * c->bw + ah, False); */
+/* 		i++; */
+/* 	} */
+/* } */
