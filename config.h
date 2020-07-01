@@ -13,8 +13,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 10;        /* vertical padding for statusbar */
-static const int vertpad            = 0;       /* vertical padding of bar */
-static const int sidepad            = 0;       /* horizontal padding of bar */
+static const int vertpad            = 4;       /* vertical padding of bar */
+static const int sidepad            = 4;       /* horizontal padding of bar */
 static const char *fonts[]          = { "Product Sans:size=12", "Amiri:size=12", "Font Awesome:size=12", "Joypixels:size=12" };
 static const char dmenufont[]       = "SF UI Display:size=12";
 static const char col_gray1[]       = "#222222";
@@ -49,7 +49,7 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 #include "layouts.c"
-#include "fibonacci.c"
+/* #include "fibonacci.c" */
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },
@@ -150,7 +150,7 @@ static Key keys[] = {
     { 0, XF86XK_AudioRaiseVolume,   spawn,     SHCMD("pactl set-sink-volume 0 +5% && pkill -RTMIN+10 dwmblocks") },
     { 0, XF86XK_AudioMute,          spawn,     SHCMD("pactl set-sink-mute 0 toggle && pkill -RTMIN+10 dwmblocks") },
     { 0, XK_Print,                  spawn,     SHCMD("scrot -e 'mv $f ~/Pictures/screenshots'") },
-    { 0, ShiftMask|XK_Print,        spawn,     SHCMD("scrot -s -e 'mv $f ~/Pictures/screenshots'") },
+    /* { 0, ShiftMask|XK_Print,        spawn,     SHCMD("scrot -s -e 'mv $f ~/Pictures/screenshots'") }, */
 };
 
 /* button definitions */
