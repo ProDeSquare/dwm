@@ -254,7 +254,7 @@ static void zoom(const Arg *arg);
 static void centeredmaster(Monitor *m);
 static void centeredfloatingmaster(Monitor *m);
 /* static void bstack(Monitor *m); */
-static void bstackhoriz(Monitor *m);
+/* static void bstackhoriz(Monitor *m); */
 
 /* variables */
 static const char broken[] = "broken";
@@ -2503,104 +2503,32 @@ main(int argc, char *argv[])
 /* 	} */
 /* } */
 
-static void
-bstackhoriz(Monitor *m) {
-	int w, mh, mx, tx, ty, th;
-	unsigned int i, n;
-	Client *c;
+/* static void */
+/* bstackhoriz(Monitor *m) { */
+/* 	int w, mh, mx, tx, ty, th; */
+/* 	unsigned int i, n; */
+/* 	Client *c; */
 
-	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
-	if (n == 0)
-		return;
-	if (n > m->nmaster) {
-		mh = m->nmaster ? m->mfact * m->wh : 0;
-		th = (m->wh - mh) / (n - m->nmaster);
-		ty = m->wy + mh;
-	} else {
-		th = mh = m->wh;
-		ty = m->wy;
-	}
-	for (i = mx = 0, tx = m->wx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) {
-		if (i < m->nmaster) {
-			w = (m->ww - mx) / (MIN(n, m->nmaster) - i);
-			resize(c, m->wx + mx, m->wy, w - (2 * c->bw), mh - (2 * c->bw), 0);
-			mx += WIDTH(c);
-		} else {
-			resize(c, tx, ty, m->ww - (2 * c->bw), th - (2 * c->bw), 0);
-			if (th != m->wh)
-				ty += HEIGHT(c);
-		}
-	}
-}
-
-// void
-// fibonacci(Monitor *mon, int s) {
-// 	unsigned int i, n, nx, ny, nw, nh;
-// 	int oh, ov, ih, iv;
-// 	Client *c;
-
-// 	for(n = 0, c = nexttiled(mon->clients); c; c = nexttiled(c->next), n++);
-
-// 	getgaps(mon, &oh, &ov, &ih, &iv, &n);
-
-// 	if(n == 0)
-// 		return;
-
-// 	nx = mon->wx + ov;
-// 	ny = oh;
-// 	nw = mon->ww - 2*ov;
-// 	nh = mon->wh - 2*oh;
-
-// 	for(i = 0, c = nexttiled(mon->clients); c; c = nexttiled(c->next)) {
-// 		if((i % 2 && nh / 2 > 2 * c->bw)
-// 		   || (!(i % 2) && nw / 2 > 2 * c->bw)) {
-// 			if(i < n - 1) {
-// 				if(i % 2)
-// 					nh = (nh - ih) / 2;
-// 				else
-// 					nw = (nw - iv) / 2;
-// 				if((i % 4) == 2 && !s)
-// 					nx += nw + iv;
-// 				else if((i % 4) == 3 && !s)
-// 					ny += nh + ih;
-// 			}
-// 			if((i % 4) == 0) {
-// 				if(s)
-// 					ny += nh + ih;
-// 				else
-// 					ny -= nh + ih;
-// 			}
-// 			else if((i % 4) == 1)
-// 				nx += nw + iv;
-// 			else if((i % 4) == 2)
-// 				ny += nh + ih;
-// 			else if((i % 4) == 3) {
-// 				if(s)
-// 					nx += nw + iv;
-// 				else
-// 					nx -= nw + iv;
-// 			}
-// 			if(i == 0)
-// 			{
-// 				if(n != 1)
-// 					nw = mon->ww * mon->mfact;
-// 				ny = mon->wy + oh;
-// 			}
-// 			else if(i == 1)
-// 				nw = mon->ww - nw - iv - 2 * ov;
-// 			i++;
-// 		}
-
-// 		resize(c, nx, ny, nw - 2 * c->bw, nh - 2 * c->bw, False);
-// 	}
-// }
-
-// void
-// dwindle(Monitor *mon) {
-// 	fibonacci(mon, 1);
-// }
-
-// void
-// spiral(Monitor *mon) {
-// 	fibonacci(mon, 0);
-// }
+/* 	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++); */
+/* 	if (n == 0) */
+/* 		return; */
+/* 	if (n > m->nmaster) { */
+/* 		mh = m->nmaster ? m->mfact * m->wh : 0; */
+/* 		th = (m->wh - mh) / (n - m->nmaster); */
+/* 		ty = m->wy + mh; */
+/* 	} else { */
+/* 		th = mh = m->wh; */
+/* 		ty = m->wy; */
+/* 	} */
+/* 	for (i = mx = 0, tx = m->wx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) { */
+/* 		if (i < m->nmaster) { */
+/* 			w = (m->ww - mx) / (MIN(n, m->nmaster) - i); */
+/* 			resize(c, m->wx + mx, m->wy, w - (2 * c->bw), mh - (2 * c->bw), 0); */
+/* 			mx += WIDTH(c); */
+/* 		} else { */
+/* 			resize(c, tx, ty, m->ww - (2 * c->bw), th - (2 * c->bw), 0); */
+/* 			if (th != m->wh) */
+/* 				ty += HEIGHT(c); */
+/* 		} */
+/* 	} */
+/* } */
