@@ -15,6 +15,8 @@ dwm is a dynamic window manager for X. Read more about dwm on [suckless' website
     + Gridmode
     + Centered Master
     + Deck
+    + Bottom Stack
+    + Bottom Stack Horizontal
 + i3wm like shortcuts
 
 ### Fonts used
