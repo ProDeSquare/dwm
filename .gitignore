@@ -1,5 +1,7 @@
 config.h.orig
 dwm.c.orig
+config.mk.orig
+drw.c.orig
 drw.o
 dwm
 dwm.o
