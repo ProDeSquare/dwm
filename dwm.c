@@ -210,17 +210,17 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
-static void setgaps(int oh, int ov, int ih, int iv);
-static void getgaps(Monitor *m, int *oh, int *ov, int *ih, int *iv, unsigned int *nc);
-static void incrgaps(const Arg *arg);
-static void incrigaps(const Arg *arg);
-static void incrogaps(const Arg *arg);
-static void incrohgaps(const Arg *arg);
-static void incrovgaps(const Arg *arg);
-static void incrihgaps(const Arg *arg);
-static void incrivgaps(const Arg *arg);
-static void togglegaps(const Arg *arg);
-static void defaultgaps(const Arg *arg);
+/* static void setgaps(int oh, int ov, int ih, int iv); */
+/* static void getgaps(Monitor *m, int *oh, int *ov, int *ih, int *iv, unsigned int *nc); */
+/* static void incrgaps(const Arg *arg); */
+/* static void incrigaps(const Arg *arg); */
+/* static void incrogaps(const Arg *arg); */
+/* static void incrohgaps(const Arg *arg); */
+/* static void incrovgaps(const Arg *arg); */
+/* static void incrihgaps(const Arg *arg); */
+/* static void incrivgaps(const Arg *arg); */
+/* static void togglegaps(const Arg *arg); */
+/* static void defaultgaps(const Arg *arg); */
 static void setlayout(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);

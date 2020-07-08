@@ -117,14 +117,14 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask|ControlMask,  XK_l,      incrigaps,      {.i = -1 } },
 	{ MODKEY|Mod1Mask,              XK_0,      togglegaps,     {0} },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
-	{ MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } },
-	{ MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } },
-	{ MODKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -1 } },
-	{ MODKEY|Mod1Mask,              XK_y,      incrohgaps,     {.i = +1 } },
-	{ MODKEY|Mod1Mask,              XK_o,      incrohgaps,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } },
+	/* { MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } }, */
+	/* { MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } }, */
+	/* { MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } }, */
+	/* { MODKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -1 } }, */
+	/* { MODKEY|Mod1Mask,              XK_y,      incrohgaps,     {.i = +1 } }, */
+	/* { MODKEY|Mod1Mask,              XK_o,      incrohgaps,     {.i = -1 } }, */
+	/* { MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } }, */
+	/* { MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } }, */
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
