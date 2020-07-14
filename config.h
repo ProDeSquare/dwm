@@ -90,6 +90,7 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
 static const char *privatebrowsercmd[]  = { "brave", "--incognito", NULL };
 static const char *filemanagercmd[]  = { "st", "-e", "ranger" };
+static const char *spotify[]  = { "spotify", NULL };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
@@ -102,6 +103,7 @@ static Key keys[] = {
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
     { MODKEY|ControlMask,           XK_b,      spawn,          {.v = privatebrowsercmd } },
     { MODKEY,                       XK_f,      spawn,          {.v = filemanagercmd } },
+    { MODKEY,                       XK_s,      spawn,          {.v = spotify } },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -128,17 +130,17 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY|ShiftMask,             XK_n,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[4]} },
-	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[5]} },
-	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[6]} },
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[7]} },
-    { MODKEY,                       XK_s,      setlayout,      {.v = &layouts[8]} },
-    { MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[9]} },
-    { MODKEY,                       XK_a,      setlayout,      {.v = &layouts[10]} },
+	/* { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[0]} }, /1* dwindle *1/ */
+	/* { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} }, /1* tile *1/ */
+	/* { MODKEY|ShiftMask,             XK_n,      setlayout,      {.v = &layouts[2]} }, /1* null *1/ */
+	/* { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} }, /1* monocle *1/ */
+	/* { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[4]} }, /1* centered master *1/ */
+	/* { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[5]} }, /1* center floating *1/ */
+	/* { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[6]} }, /1* grid *1/ */
+	/* { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[7]} }, /1* spiral *1/ */
+    /* { MODKEY,                       XK_s,      setlayout,      {.v = &layouts[8]} }, /1* bottom stack *1/ */
+    /* { MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[9]} }, /1* bottom stack horizontal *1/ */
+    /* { MODKEY,                       XK_a,      setlayout,      {.v = &layouts[10]} }, /1* deck *1/ */
 	{ MODKEY|ControlMask,           XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
