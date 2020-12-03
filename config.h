@@ -1,33 +1,38 @@
 /* Hamza Mughal's patch of dwm */
 #include <X11/XF86keysym.h>
 
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 20;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 20;       /* vert outer gap between windows and screen edge */
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 
-static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
+/* static const int horizpadbar        = 5;        /1* horizontal padding for statusbar *1/ */
+/* static const int vertpadbar         = 10;        /1* vertical padding for statusbar *1/ */
+/* static const int vertpad            = 6;       /1* vertical padding of bar *1/ */
+/* static const int sidepad            = 160;       /1* horizontal padding of bar *1/ */
+
+static const int horizpadbar        = 5;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 10;        /* vertical padding for statusbar */
-static const int vertpad            = 6;       /* vertical padding of bar */
-static const int sidepad            = 6;       /* horizontal padding of bar */
+static const int vertpad            = 0;       /* vertical padding of bar */
+static const int sidepad            = 0;       /* horizontal padding of bar */
 
-static const char *fonts[]          = { "Product Sans:size=12", "Amiri:size=12", "Font Awesome:size=12", "Joypixels:size=12" };
-static const char dmenufont[]       = "SF UI Display:size=12";
+static const char *fonts[]          = { "Jetbrains Mono:size=11", "Joypixels:size=11", "Amiri:size=11", "Font Awesome:size=11" };
+static const char dmenufont[]       = "SF UI Display:size=11";
 
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#33415e";
+static const char col_gray1[]       = "#282c34";
+static const char col_gray2[]       = "#343a45";
+static const char col_gray3[]       = "#d7dce2";
+static const char col_gray4[]       = "#ffd580";
+static const char col_cyan[]        = "#171c28";
 
-static const unsigned int baralpha = 0xc5;
+static const unsigned int baralpha = 0xff;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
@@ -43,7 +48,9 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+/* static const char *tags[] = { "TE", "BR", "PR", "CO", "SE", "FI", "VI", "AU", "MI" }; */
+/* static const char *tags[] = { "", "", "", "", "", "", "", "", "" }; */
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -51,12 +58,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
 	/* { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 }, */
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.52; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
@@ -64,7 +71,6 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
- 	{ "[\\]",   dwindle },
 	{ "[]=",    tile },
 	{ "><>",    NULL },
 	{ "[M]",    monocle },
@@ -72,9 +78,10 @@ static const Layout layouts[] = {
 	{ ">M>",    centeredfloatingmaster },
 	{ "HHH",    grid },
  	{ "[@]",    spiral },
+	{ "[\\]",   dwindle },
 	{ "TTT",    bstack },
 	{ "===",    bstackhoriz },
-    { "H[]",    deck },
+	{ "H[]",    deck },
 };
 
 /* key definitions */
@@ -91,12 +98,11 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[]  = { "brave", NULL };
+static const char *dmenucmd[] = { "dmenu_run", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
+static const char *browsercmd[]  = { "firefox", NULL };
 static const char *privatebrowsercmd[]  = { "brave", "--incognito", NULL };
-static const char *filemanagercmd[]  = { "st", "-e", "ranger" };
-static const char *spotify[]  = { "spotify", NULL };
+static const char *filemanagercmd[]  = { "alacritty", "-e", "ranger" };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
@@ -112,19 +118,18 @@ static Key keys[] = {
     /* application shortcuts */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-    { MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
-    { MODKEY|ControlMask,           XK_b,      spawn,          {.v = privatebrowsercmd } },
-    { MODKEY,                       XK_f,      spawn,          {.v = filemanagercmd } },
-    { MODKEY,                       XK_s,      spawn,          {.v = spotify } },
+	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
+	{ MODKEY|ControlMask,           XK_b,      spawn,          {.v = privatebrowsercmd } },
+	{ MODKEY,                       XK_f,      spawn,          {.v = filemanagercmd } },
 
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.02} },
+	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.02} },
 
-    /* gaps */
+	/* gaps */
 	{ MODKEY|Mod1Mask,              XK_h,      incrgaps,       {.i = +1 } },
 	{ MODKEY|Mod1Mask,              XK_l,      incrgaps,       {.i = -1 } },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_h,      incrogaps,      {.i = +1 } },
@@ -144,21 +149,21 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } }, */
 
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ Mod1Mask,                       XK_Tab,    view,           {0} },
 
-	/* { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[0]} }, /1* dwindle *1/ */
-	/* { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} }, /1* tile *1/ */
-	/* { MODKEY|ShiftMask,             XK_n,      setlayout,      {.v = &layouts[2]} }, /1* null *1/ */
-	/* { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} }, /1* monocle *1/ */
-	/* { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[4]} }, /1* centered master *1/ */
-	/* { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[5]} }, /1* center floating *1/ */
-	/* { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[6]} }, /1* grid *1/ */
-	/* { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[7]} }, /1* spiral *1/ */
-    /* { MODKEY,                       XK_s,      setlayout,      {.v = &layouts[8]} }, /1* bottom stack *1/ */
-    /* { MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[9]} }, /1* bottom stack horizontal *1/ */
-    /* { MODKEY,                       XK_a,      setlayout,      {.v = &layouts[10]} }, /1* deck *1/ */
+	/* { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} }, /1* tile *1/ */
+	/* { MODKEY|ShiftMask,             XK_n,      setlayout,      {.v = &layouts[1]} }, /1* null *1/ */
+	/* { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} }, /1* monocle *1/ */
+	/* { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} }, /1* centered master *1/ */
+	/* { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} }, /1* center floating *1/ */
+	/* { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[5]} }, /1* grid *1/ */
+	/* { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[6]} }, /1* spiral *1/ */
+	/* { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[7]} }, /1* dwindle *1/ */
+	/* { MODKEY,                       XK_s,      setlayout,      {.v = &layouts[8]} }, /1* bottom stack *1/ */
+	/* { MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[9]} }, /1* bottom stack horizontal *1/ */
+	/* { MODKEY,                       XK_a,      setlayout,      {.v = &layouts[10]} }, /1* deck *1/ */
 
-    /* layouts */
+	/* layouts */
 	{ MODKEY|ControlMask,           XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
@@ -172,7 +177,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 
-    /* tagkeys */
+	/* tagkeys */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -193,7 +198,7 @@ static Key keys[] = {
     { 0, XF86XK_AudioMute,          spawn,     SHCMD("pactl set-sink-mute 0 toggle && pkill -RTMIN+10 dwmblocks") },
 
     /* screenshots */
-    { 0, XK_Print,                  spawn,     SHCMD("scrot -e 'mv $f ~/Pictures/screenshots'") },
+    { 0, XK_Print,                  spawn,     SHCMD("screenshot") },
 };
 
 /* button definitions */
