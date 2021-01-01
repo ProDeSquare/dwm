@@ -100,9 +100,10 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 
 static const char *dmenucmd[] = { "dmenu_run", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *browsercmd[]  = { "firefox", NULL };
+static const char *browsercmd[]  = { "brave", NULL };
 static const char *privatebrowsercmd[]  = { "brave", "--incognito", NULL };
-static const char *filemanagercmd[]  = { "alacritty", "-e", "ranger" };
+static const char *filemanagercmd[]  = { "alacritty", "-e", "ranger", NULL };
+static const char *mailmanagercmd[]  = { "alacritty", "-e", "neomutt", NULL };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
@@ -121,6 +122,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
 	{ MODKEY|ControlMask,           XK_b,      spawn,          {.v = privatebrowsercmd } },
 	{ MODKEY,                       XK_f,      spawn,          {.v = filemanagercmd } },
+	{ MODKEY,                       XK_grave,  spawn,          {.v = mailmanagercmd } },
 
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
