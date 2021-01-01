@@ -117,7 +117,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 
     /* application shortcuts */
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_slash,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
 	{ MODKEY|ControlMask,           XK_b,      spawn,          {.v = privatebrowsercmd } },
