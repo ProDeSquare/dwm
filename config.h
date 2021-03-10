@@ -11,12 +11,7 @@ static const unsigned int gappov    = 20;       /* vert outer gap between window
 static const int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
-
-/* static const int horizpadbar        = 5;        /1* horizontal padding for statusbar *1/ */
-/* static const int vertpadbar         = 10;        /1* vertical padding for statusbar *1/ */
-/* static const int vertpad            = 6;       /1* vertical padding of bar *1/ */
-/* static const int sidepad            = 160;       /1* horizontal padding of bar *1/ */
+static const int topbar             = 1;        /* 0 means bottom bar */
 
 static const int horizpadbar        = 5;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 10;        /* vertical padding for statusbar */
@@ -32,7 +27,7 @@ static const char col_gray3[]       = "#d7dce2";
 static const char col_gray4[]       = "#ffd580";
 static const char col_cyan[]        = "#171c28";
 
-static const unsigned int baralpha = 0xde;
+static const unsigned int baralpha = 0xff;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
@@ -49,17 +44,11 @@ static const unsigned int alphas[][3]      = {
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-/* static const char *tags[] = { "TE", "BR", "PR", "CO", "SE", "FI", "VI", "AU", "MI" }; */
-/* static const char *tags[] = { "", "", "", "", "", "", "", "", "" }; */
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
-	/* { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 }, */
+	{ "Telegram",     NULL,       NULL,       1 << 8,            1,           -1 },
 };
 
 /* layout(s) */
@@ -98,7 +87,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
-static const char *dmenucmd[] = { "dmenu_run", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-l", "10", "-g", "8", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
 static const char *privatebrowsercmd[]  = { "brave", "--incognito", NULL };
@@ -123,6 +112,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_b,      spawn,          {.v = privatebrowsercmd } },
 	{ MODKEY,                       XK_f,      spawn,          {.v = filemanagercmd } },
 	{ MODKEY,                       XK_grave,  spawn,          {.v = mailmanagercmd } },
+	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("prompt 'Do you really want to shutdown?' 'poweroff'") },
 
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
