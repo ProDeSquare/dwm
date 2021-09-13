@@ -8,7 +8,7 @@ static const unsigned int gappih    = 10;       /* horiz inner gap between windo
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 20;       /* vert outer gap between windows and screen edge */
-static const int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
+static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -48,7 +48,6 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
-	{ "Telegram",     NULL,       NULL,       1 << 8,            1,           -1 },
 };
 
 /* layout(s) */
@@ -87,12 +86,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
-static const char *dmenucmd[] = { "dmenu_run", "-l", "10", "-g", "8", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
-static const char *browsercmd[]  = { "brave", NULL };
-static const char *privatebrowsercmd[]  = { "brave", "--incognito", NULL };
-static const char *filemanagercmd[]  = { "alacritty", "-e", "ranger", NULL };
-static const char *mailmanagercmd[]  = { "alacritty", "-e", "neomutt", NULL };
+static const char *dmenucmd[] = { "dmenu_run", NULL };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
@@ -104,15 +98,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-
-    /* application shortcuts */
-	{ MODKEY,                       XK_slash,  spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
-	{ MODKEY|ControlMask,           XK_b,      spawn,          {.v = privatebrowsercmd } },
-	{ MODKEY,                       XK_f,      spawn,          {.v = filemanagercmd } },
-	{ MODKEY,                       XK_grave,  spawn,          {.v = mailmanagercmd } },
-	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("prompt 'Do you really want to shutdown?' 'poweroff'") },
 
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -131,29 +116,8 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask,              XK_0,      togglegaps,     {0} },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
 
-	/* { MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } }, */
-	/* { MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } }, */
-	/* { MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } }, */
-	/* { MODKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -1 } }, */
-	/* { MODKEY|Mod1Mask,              XK_y,      incrohgaps,     {.i = +1 } }, */
-	/* { MODKEY|Mod1Mask,              XK_o,      incrohgaps,     {.i = -1 } }, */
-	/* { MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } }, */
-	/* { MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } }, */
-
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ Mod1Mask,                       XK_Tab,    view,           {0} },
-
-	/* { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} }, /1* tile *1/ */
-	/* { MODKEY|ShiftMask,             XK_n,      setlayout,      {.v = &layouts[1]} }, /1* null *1/ */
-	/* { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} }, /1* monocle *1/ */
-	/* { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} }, /1* centered master *1/ */
-	/* { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} }, /1* center floating *1/ */
-	/* { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[5]} }, /1* grid *1/ */
-	/* { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[6]} }, /1* spiral *1/ */
-	/* { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[7]} }, /1* dwindle *1/ */
-	/* { MODKEY,                       XK_s,      setlayout,      {.v = &layouts[8]} }, /1* bottom stack *1/ */
-	/* { MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[9]} }, /1* bottom stack horizontal *1/ */
-	/* { MODKEY,                       XK_a,      setlayout,      {.v = &layouts[10]} }, /1* deck *1/ */
+	{ MODKEY|ShiftMask,				XK_Return, zoom,           {0} },
+	{ Mod1Mask,                     XK_Tab,    view,           {0} },
 
 	/* layouts */
 	{ MODKEY|ControlMask,           XK_comma,  cyclelayout,    {.i = -1 } },
@@ -179,18 +143,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-
-    /* brightness control */
-    { 0, XF86XK_MonBrightnessUp,    spawn,     SHCMD("xbacklight -inc 5 && pkill -RTMIN+11 dwmblocks") },
-    { 0, XF86XK_MonBrightnessDown,  spawn,     SHCMD("xbacklight -dec 5 && pkill -RTMIN+11 dwmblocks") },
-
-    /* audio control */
-    { 0, XF86XK_AudioLowerVolume,   spawn,     SHCMD("pactl set-sink-volume 0 -5% && pkill -RTMIN+10 dwmblocks") },
-    { 0, XF86XK_AudioRaiseVolume,   spawn,     SHCMD("pactl set-sink-volume 0 +5% && pkill -RTMIN+10 dwmblocks") },
-    { 0, XF86XK_AudioMute,          spawn,     SHCMD("pactl set-sink-mute 0 toggle && pkill -RTMIN+10 dwmblocks") },
-
-    /* screenshots */
-    { 0, XK_Print,                  spawn,     SHCMD("screenshot") },
 };
 
 /* button definitions */
