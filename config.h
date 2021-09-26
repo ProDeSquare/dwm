@@ -1,7 +1,7 @@
 /* Hamza Mughal's patch of dwm */
 #include <X11/XF86keysym.h>
 
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
@@ -34,8 +34,8 @@ static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray1 },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_gray2  },
 };
 
 static const unsigned int alphas[][3]      = {
