@@ -20,7 +20,7 @@ static const int vertpadbar         = 10;        /* vertical padding for statusb
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
 
-static const char *fonts[]          = { "Jetbrains Mono:size=11", "Joypixels:size=11", "Amiri:size=11", "Font Awesome:size=11" };
+static const char *fonts[]          = { "Jetbrains Mono Nerd Font:size=11", "Joypixels:size=11" };
 static const char dmenufont[]       = "SF UI Display:size=11";
 
 static const char col_gray1[]       = "#282c34";
@@ -93,13 +93,13 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+/* static char dmenumon[2] = "0"; /1* component of dmenucmd, manipulated in spawn() *1/ */
 
-static const char *dmenucmd[] = { "dmenu_run", NULL };
+/* static const char *dmenucmd[] = { "dmenu_run", NULL }; */
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
-static char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
+/* static char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL }; */
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -161,9 +161,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button1,        spawn,          {.v = statuscmd } },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = statuscmd } },
-	{ ClkStatusText,        0,              Button3,        spawn,          {.v = statuscmd } },
+	/* { ClkStatusText,        0,              Button1,        spawn,          {.v = statuscmd } }, */
+	/* { ClkStatusText,        0,              Button2,        spawn,          {.v = statuscmd } }, */
+	/* { ClkStatusText,        0,              Button3,        spawn,          {.v = statuscmd } }, */
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },

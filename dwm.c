@@ -237,7 +237,7 @@ static void setup(void);
 static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
 static void sigchld(int unused);
-static void spawn(const Arg *arg);
+/* static void spawn(const Arg *arg); */
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void togglebar(const Arg *arg);
@@ -1834,25 +1834,25 @@ sigchld(int unused)
 	while (0 < waitpid(-1, NULL, WNOHANG));
 }
 
-void
-spawn(const Arg *arg)
-{
-	if (arg->v == dmenucmd)
-		dmenumon[0] = '0' + selmon->num;
-	else if (arg->v == statuscmd) {
-		statuscmd[2] = statuscmds[statuscmdn];
-		setenv("BUTTON", lastbutton, 1);
-	}
-	if (fork() == 0) {
-		if (dpy)
-			close(ConnectionNumber(dpy));
-		setsid();
-		execvp(((char **)arg->v)[0], (char **)arg->v);
-		fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[0]);
-		perror(" failed");
-		exit(EXIT_SUCCESS);
-	}
-}
+/* void */
+/* spawn(const Arg *arg) */
+/* { */
+/* 	if (arg->v == dmenucmd) */
+/* 		dmenumon[0] = '0' + selmon->num; */
+/* 	else if (arg->v == statuscmd) { */
+/* 		statuscmd[2] = statuscmds[statuscmdn]; */
+/* 		setenv("BUTTON", lastbutton, 1); */
+/* 	} */
+/* 	if (fork() == 0) { */
+/* 		if (dpy) */
+/* 			close(ConnectionNumber(dpy)); */
+/* 		setsid(); */
+/* 		execvp(((char **)arg->v)[0], (char **)arg->v); */
+/* 		fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[0]); */
+/* 		perror(" failed"); */
+/* 		exit(EXIT_SUCCESS); */
+/* 	} */
+/* } */
 
 void
 tag(const Arg *arg)
