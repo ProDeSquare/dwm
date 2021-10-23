@@ -20,8 +20,7 @@ static const int vertpadbar         = 10;        /* vertical padding for statusb
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
 
-static const char *fonts[]          = { "Jetbrains Mono Nerd Font:size=11", "Joypixels:size=11" };
-static const char dmenufont[]       = "SF UI Display:size=11";
+static const char *fonts[]          = { "Jetbrains Mono Nerd Font:size=10" };
 
 static const char col_gray1[]       = "#282c34";
 static const char col_gray2[]       = "#343a45";
