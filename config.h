@@ -16,9 +16,9 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
 static const int horizpadbar        = 5;        /* horizontal padding for statusbar */
-static const int vertpadbar         = 10;        /* vertical padding for statusbar */
-static const int vertpad            = 0;       /* vertical padding of bar */
-static const int sidepad            = 0;       /* horizontal padding of bar */
+static const int vertpadbar         = 10;       /* vertical padding for statusbar */
+static const int vertpad            = 0;		/* vertical padding of bar */
+static const int sidepad            = 0;		/* horizontal padding of bar */
 
 static const char *fonts[]          = { "Jetbrains Mono Nerd Font:size=10" };
 
@@ -47,9 +47,6 @@ static const unsigned int alphas[][3]      = {
 static const char *tags[] = { "1: ", "2: ", "3: 﫸", "4: ", "5: ", "6: ", "7: ", "8: ", "9: " };
 
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor */
-	 /* *	WM_CLASS(STRING) = instance, class */
-	 /* *	WM_NAME(STRING) = title */
 	/* class		instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",		NULL,     NULL,           0,         0,          0,           0,        -1 },
 	{ "Firefox",	NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
@@ -88,21 +85,8 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
-/* commands */
-/* static char dmenumon[2] = "0"; /1* component of dmenucmd, manipulated in spawn() *1/ */
-
-/* static const char *dmenucmd[] = { "dmenu_run", NULL }; */
-
-/* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
-static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
-/* static char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL }; */
-
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
@@ -160,9 +144,6 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	/* { ClkStatusText,        0,              Button1,        spawn,          {.v = statuscmd } }, */
-	/* { ClkStatusText,        0,              Button2,        spawn,          {.v = statuscmd } }, */
-	/* { ClkStatusText,        0,              Button3,        spawn,          {.v = statuscmd } }, */
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },

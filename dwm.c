@@ -571,7 +571,7 @@ buttonpress(XEvent *e)
 					text += i+1;
 					i = -1;
 					if (x >= ev->x) break;
-					if (ch <= LENGTH(statuscmds)) statuscmdn = ch - 1;
+					/* if (ch <= LENGTH(statuscmds)) statuscmdn = ch - 1; */
 				}
 			}
 		} else
