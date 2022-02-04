@@ -22,11 +22,11 @@ static const int sidepad            = 0;
 
 static const char *fonts[]          = { "Jetbrains Mono Nerd Font:size=10" };
 
-static const char col_gray1[]       = "#282c34";
-static const char col_gray2[]       = "#343a45";
-static const char col_gray3[]       = "#d7dce2";
+static const char col_gray2[]       = "#24252a";
+static const char col_gray1[]       = "#1c2023";
+static const char col_gray3[]       = "#f3f4f5";
 static const char col_gray4[]       = "#ffd580";
-static const char col_cyan[]        = "#171c28";
+static const char col_cyan[]        = "#1c2023";
 
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
