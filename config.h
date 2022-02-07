@@ -44,7 +44,9 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1: ", "2: ", "3: 﫸", "4: ", "5: ", "6: ", "7: ", "8: ", "9: " };
+static const char *tags[] = {
+	"1: \uf303", "2: \uf268", "3: \ufaf8", "4: \ue62b", "5: \uf233", "6: \uf74a", "7: \uf03d", "8: \uf886", "9: \uf074"
+};
 
 static const Rule rules[] = {
 	/* class		instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
