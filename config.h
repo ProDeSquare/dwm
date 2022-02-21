@@ -6,9 +6,9 @@ static const unsigned int snap      = 32;
 
 static const int swallowfloating    = 0;
 
-static const unsigned int gappih    = 10;
-static const unsigned int gappiv    = 10;
-static const unsigned int gappoh    = 10;
+static const unsigned int gappih    = 20;
+static const unsigned int gappiv    = 20;
+static const unsigned int gappoh    = 20;
 static const unsigned int gappov    = 20;
 static const int smartgaps          = 0;
 
@@ -22,13 +22,13 @@ static const int sidepad            = 0;
 
 static const char *fonts[]          = { "Jetbrains Mono Nerd Font:size=10" };
 
-static const char col_gray2[]       = "#24252a";
+static const char col_gray2[]       = "#c7ccd1";
 static const char col_gray1[]       = "#1c2023";
 static const char col_gray3[]       = "#f3f4f5";
 static const char col_gray4[]       = "#ffd580";
 static const char col_cyan[]        = "#1c2023";
 
-static const unsigned int baralpha = 0xd0;
+static const unsigned int baralpha = 0xf0;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
