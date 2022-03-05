@@ -20,7 +20,7 @@ static const int vertpadbar         = 15;
 static const int vertpad            = 0;
 static const int sidepad            = 0;
 
-static const char *fonts[]          = { "Jetbrains Mono Nerd Font:size=10" };
+static const char *fonts[]          = { "SF Mono Nerd Font:size=10:style=Medium" };
 
 static const char col_gray2[]       = "#c7ccd1";
 static const char col_gray1[]       = "#1c2023";
