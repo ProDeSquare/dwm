@@ -8,8 +8,8 @@ static const int swallowfloating    = 0;
 
 static const unsigned int gappih    = 20;
 static const unsigned int gappiv    = 20;
-static const unsigned int gappoh    = 20;
-static const unsigned int gappov    = 20;
+static const unsigned int gappoh    = 30;
+static const unsigned int gappov    = 30;
 static const int smartgaps          = 0;
 
 static const int showbar            = 1;
@@ -28,7 +28,7 @@ static const char col_gray3[]       = "#f3f4f5";
 static const char col_gray4[]       = "#ffd580";
 static const char col_cyan[]        = "#1c2023";
 
-static const unsigned int baralpha = 0xf0;
+static const unsigned int baralpha = 0xe0;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
@@ -45,13 +45,14 @@ static const unsigned int alphas[][3]      = {
 
 /* tagging */
 static const char *tags[] = {
-	"1: \uf303", "2: \uf268", "3: \ufaf8", "4: \ue62b", "5: \uf233", "6: \uf74a", "7: \uf03d", "8: \uf886", "9: \uf074"
+	"1: \uf303", "2: \uf268", "3: \ufaf8", "4: \ue62b", "5: \uf408", "6: \uf74a", "7: \uf03d", "8: \uf886", "9: \uf074"
 };
 
 static const Rule rules[] = {
 	/* class		instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "St",			NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "Alacritty",	NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "kitty",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,			NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -152,3 +153,4 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
