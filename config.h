@@ -22,19 +22,19 @@ static const int sidepad            = 0;
 
 static const char *fonts[]          = { "SF Mono Nerd Font:size=10:style=Medium" };
 
-static const char col_gray1[]       = "#1c2023";
-static const char col_gray2[]       = "#c7ccd1";
-static const char col_gray3[]       = "#f3f4f5";
-static const char col_gray4[]       = "#ffd580";
-static const char col_cyan[]        = "#1c2023";
+static const char col_gray1[]       = "#001110";
+static const char col_gray2[]       = "#B3E5E4";
+static const char col_gray3[]       = "#BAE3E3";
+static const char col_gray4[]       = "#F8B017";
+static const char col_gray5[]       = "#00B6B6";
 
 static const unsigned int baralpha = 0xe0;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray1 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_gray2  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_gray1,  col_gray5  },
 };
 
 static const unsigned int alphas[][3]      = {
