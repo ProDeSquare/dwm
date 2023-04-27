@@ -17,8 +17,8 @@ static const int topbar             = 1;
 
 static const int horizpadbar        = 10;
 static const int vertpadbar         = 15;
-static const int vertpad            = 3;
-static const int sidepad            = 125;
+static const int vertpad            = 0;
+static const int sidepad            = 0;
 
 static const char *fonts[]          = { "SF Mono Nerd Font:size=10:style=Medium" };
 
