@@ -22,8 +22,8 @@ static const int sidepad            = 0;
 
 static const char *fonts[]          = { "SF Mono Nerd Font:size=10:style=Medium" };
 
-static const char col_gray2[]       = "#c7ccd1";
 static const char col_gray1[]       = "#1c2023";
+static const char col_gray2[]       = "#c7ccd1";
 static const char col_gray3[]       = "#f3f4f5";
 static const char col_gray4[]       = "#ffd580";
 static const char col_cyan[]        = "#1c2023";
