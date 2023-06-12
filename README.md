@@ -17,19 +17,13 @@ dwm is a dynamic window manager for X. Read more about dwm on [suckless' website
     + Deck
     + Bottom Stack
     + Bottom Stack Horizontal
-+ i3wm like shortcuts
 
 ### Fonts used
-+ Jetbrains Mono
-+ Font-awesome
-+ Joypixels
++ SF Mono Nerd Font
 
 ### Dependencies
++ `sxhkd` [(config)](https://github.com/ProDeSquare/dotfiles/blob/master/.config/sxhkd/sxhkdrc)
 + `libxft-bgra`
-+ `st` [(get my build of st)](https://github.com/ProDeSquare/st)
-+ `dmenu`
-+ `ttf-jetbrains-mono`
-+ `ttf-joypixels`
 
 ### How to install
 + Clone this repository into your system.
