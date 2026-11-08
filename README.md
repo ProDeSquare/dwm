@@ -1,6 +1,6 @@
 # Hamza Mughal's patch of dwm
 
-![Screenshot](./screenshot.jpg)
+![Screenshot](https://cdn.prodesquare.com/gh/img/suckless-dwm-screenshot.jpg)
 
 dwm is a dynamic window manager for X. Read more about dwm on [suckless' website](http://dwm.suckless.org)
 
