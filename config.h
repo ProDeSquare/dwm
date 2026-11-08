@@ -6,17 +6,17 @@ static const unsigned int snap      = 32;
 
 static const int swallowfloating    = 0;
 
-static const unsigned int gappih    = 30;
-static const unsigned int gappiv    = 30;
-static const unsigned int gappoh    = 55;
-static const unsigned int gappov    = 80;
+static const unsigned int gappih    = 10;
+static const unsigned int gappiv    = 10;
+static const unsigned int gappoh    = 10;
+static const unsigned int gappov    = 10;
 static const int smartgaps          = 0;
 
 static const int showbar            = 1;
 static const int topbar             = 1;
 
-static const int horizpadbar        = 10;
-static const int vertpadbar         = 15;
+static const int horizpadbar        = 15;
+static const int vertpadbar         = 20;
 static const int vertpad            = 0;
 static const int sidepad            = 0;
 
