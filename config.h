@@ -22,13 +22,13 @@ static const int sidepad            = 0;
 
 static const char *fonts[]          = { "SF Mono Nerd Font:size=10:style=Medium" };
 
-static const char col_gray1[]       = "#001110";
+static const char col_gray1[]       = "#000900";
 static const char col_gray2[]       = "#B3E5E4";
 static const char col_gray3[]       = "#BAE3E3";
 static const char col_gray4[]       = "#F8B017";
 static const char col_gray5[]       = "#00B6B6";
 
-static const unsigned int baralpha = 0xe0;
+static const unsigned int baralpha = 0xff;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
